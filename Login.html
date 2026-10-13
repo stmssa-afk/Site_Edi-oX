@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <title>Login - STM</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+      * {
+        padding:0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family:Arial, Helvetica, sans-serif;
+        background: #0f172a;
+      }
+      .caixaex-login {
+        width: 100%;
+        height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .caixain-login{
+        width: 350px;
+        padding: 40px;
+        text-align: center;
+        border-radius: 10px;
+        background: white;
+      }
+      .caixain-login h1{
+        font-size: 40px;
+        margin-bottom: 10px;
+      }
+      .caixain-login p{
+        margin-bottom: 25px;
+        color: #666;
+      }
+      .caixain-login input{
+        width: 100%;
+        padding: 11px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
+      .caixain-login button{
+        width:100%;
+        background: rgb(128, 42, 131);
+        color:white;
+        font-size:15px;
+        height:30px;
+        border-radius:5px;
+        border:none;
+        cursor: pointer;
+      }
+      .caixain-login button:hover{
+        background:rgb(112, 42, 114);
+      }
+      #mensagem{
+        margin-top:15px;
+        font-size:14px;
+      }
+    </style>
+</head>
+
+<body>
+
+    <div class="caixaex-login">
+
+        <div class="caixain-login">
+
+            <h1>STM</h1>
+            <p>Semana da Tecnologia Mecânica</p>
+
+            <form id="Loginid">
+                <input 
+                type="email"
+                id="email"
+                placeholder="E-mail"
+                required
+                >
+                <input
+                type="password"
+                id="senha"
+                placeholder="Senha"
+                required
+                >
+                <button type="submit">
+                Entrar
+                </button>
+                <p id="mensagem"></p>
+            </form>
+        </div>
+    </div>
+    
+
+    <script>
+        console.log("SCRIPT CARREGOU");
+        const form = document.getElementById("Loginid");
+        const mensagem = document.getElementById("mensagem");
+
+        const SUPABASEURL = 'https://eueizonyxpittymprszz.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1ZWl6b255eHBpdHR5bXByc3p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4MTc3MTQsImV4cCI6MjEwNDM5MzcxNH0.-M1ztSUh5AvXw1XdoUhr-LpNHzO1FVmsxGoRsZ3lM3I'
+
+        const supabaseCliente = supabase.createClient (SUPABASEURL, SUPABASE_ANON_KEY)
+
+        form.addEventListener("submit",async function(event) {
+
+            event.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const senha = document.getElementById("senha").value;
+
+            const {data, error} =
+            await supabaseCliente.auth.signInWithPassword({
+              email: email,
+              password: senha
+            });
+            
+            if (error){
+              mensagem.textContent = error.message;
+              mensagem.style.color = "red";
+              console.error("Login inválido",error);
+              return;
+            }
+            else {
+              mensagem.textContent = "Login realizado com sucesso";
+              mensagem.style.color = "green";
+              console.log("Usuário logado", data.user);
+            }
+            await new Promise(resolve => setTimeout(resolve, 500));
+            const userID = data.user.id;
+            const {data: perfil, error: perfilError } = await supabaseCliente
+            .from('perfis')
+            .select('*')
+            .eq('id',userID)
+            .single();
+
+            if(perfilError){
+              console.error("Erro na autenticação");
+              mensagem.textContent= "Erro na autenticação do login";
+              mensagem.style.color="orange";
+              return;
+            }
+            const cargo = perfil.Teste1;
+
+            mensagem.textContent = `Bem vindo(a) ${perfil.Teste2}!`;
+            mensagem.style.color = "green"
+               await new Promise(resolve => setTimeout(resolve, 500));
+
+            if(cargo == "Palestra3"){
+              window.location.href = "2.html";
+            }
+            else if(cargo == "Palestra2"){
+              window.location.href = "3.html";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

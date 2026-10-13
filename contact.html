@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>STM</title>
+
+</head>
+<body>
+    
+    <section class="sub-header">
+        <nav>
+            <a href="index.html"><img src="images/logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="bi bi-x " onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">SOBRE</a></li>
+                    <li><a href="course.html">EVENTOS</a></li>
+                    <li><a href="blog.html">REDES SOCIAIS</a></li>
+                    <li><a href="contact.html">CONTATO</a></li>
+                    <li><a href="login.html">LOGIN</a></li>
+                </ul>
+            </div>
+            <i class="bi bi-list" onclick="showMenu()"></i>
+        </nav>
+
+        <h1>Contato</h1>
+
+    </section>
+
+    <!--------------------------------------->
+
+  
+    <section class="location">
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.1340264731316!2d-38.503254225771535!3d-12.963274459640179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x71604df54e0265b%3A0xfcb98df08aee6867!2sIFBA%20-%20Campus%20Salvador!5e0!3m2!1spt-BR!2sbr!4v1719596935648!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </section>
+
+    <section class="contact-us">
+        <div class="row">
+            <div class="contact-col">
+                <div>
+                    <i class="bi bi-house"></i>
+                    <span>
+                        <h5>R. Emídio dos Santos, s/n - Barbalho</h5>
+                        <p>Salvador - BA, 40301-015</p>
+                    </span> 
+                </div>
+                <div>
+                    <i class="bi bi-phone"></i>
+                    <span>
+                        <h5>(71) 2102-9400</h5>
+                        <p>De segunda a sábado, das 07h às 18h</p>
+                    </span> 
+                </div>
+                <div>
+                    <i class="bi bi-envelope"></i>
+                    <span>
+                        <h5>stm.ssa@ifba.edu.br</h5>
+                        <p>Envie-nos sua dúvida por email</p>
+                    </span> 
+                </div>
+            </div>
+            <div class="contact-col">
+
+                <form action="form-handler.php" method="post">
+
+                    <input type="text" name="name" placeholder="Seu Nome" required> 
+                    <input type="email" name="email" placeholder="Seu Email" required>
+                    <input type="text" name="subject" placeholder="Assunto" required>
+                    <textarea rows="8" name="message" placeholder="Mensagem" required></textarea>
+                    <button type="submit" class="hero-btn red-btn">Enviar Mensagem</button>  
+
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!--------------------------------------->
+
+    <section class="footer">
+
+        <h4>Sobre Nós</h4>
+        <p>A Semana da Tecnologia Mecânica é um evento anual que reúne estudantes, professores, profissionais e empresas para explorar e compartilhar conhecimentos sobre as inovações e os desafios do setor mecânico e industrial. Nossa missão é promover aprendizado, conexões e crescimento profissional.</p>
+
+        <div class="icons">
+            <i class="fa-brands fa-instagram"></i> 
+        </div>
+        <p>Copyright © 2024 - Semana de Tecnologia Mecânica. Todos os direitos reservados</p>
+
+    </section>
+
+<script>
+
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu(){
+        navLinks.style.right = "0";
+    }
+
+    function hideMenu(){
+        navLinks.style.right = "-200px";
+    }
+
+</script>
+
+</body>
+</html>

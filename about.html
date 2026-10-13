@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>STM</title>
+
+</head>
+<body>
+    
+    <section class="sub-header">
+        <nav>
+            <a href="index.html"><img src="images/logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="bi bi-x " onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">SOBRE</a></li>
+                    <li><a href="course.html">EVENTOS</a></li>
+                    <li><a href="blog.html">REDES SOCIAIS</a></li>
+                    <li><a href="contact.html">CONTATO</a></li>
+                    <li><a href="login.html">LOGIN</a></li>
+                </ul>
+            </div>
+            <i class="bi bi-list" onclick="showMenu()"></i>
+        </nav>
+
+        <h1>Sobre Nós</h1>
+
+    </section>
+
+    <!--------------------------------------->
+
+    <section class="about-us">
+        <div class="row">
+            <div class="about-col">
+                <h1>Conectando Conhecimento e Inovação</h1>
+                <p>A Semana da Tecnologia Mecânica é um evento anual realizado pelo Instituto Federal da Bahia, com o objetivo de conectar estudantes, professores, profissionais e empresas do setor mecânico e industrial. Desde sua criação, tem promovido conhecimento, inovação e desenvolvimento profissional por meio de palestras, workshops, minicursos e mesas-redondas. <br><br>
+                    Com um compromisso contínuo com a formação técnica e científica, o evento se destaca por criar um ambiente colaborativo, onde a teoria encontra a prática e novas ideias ganham forma.</p>
+                <a href="" class="hero-btn red-btn">Saiba Mais</a>
+            </div>
+            <div class="about-col">
+                <img src="/images/13.jpeg">
+            </div>
+        </div>
+    </section>
+
+    <!--------------------------------------->
+
+    <section class="footer">
+
+        <h4>Sobre Nós</h4>
+        <p>A Semana da Tecnologia Mecânica é um evento anual que reúne estudantes, professores, profissionais e empresas para explorar e compartilhar conhecimentos sobre as inovações e os desafios do setor mecânico e industrial. Nossa missão é promover aprendizado, conexões e crescimento profissional.</p>
+
+        <div class="icons">
+            <i class="fa-brands fa-instagram"></i> 
+        </div>
+        <p>Copyright © 2024 - Semana de Tecnologia Mecânica. Todos os direitos reservados</p> 
+
+    </section>
+
+<script>
+
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu(){
+        navLinks.style.right = "0";
+    }
+
+    function hideMenu(){
+        navLinks.style.right = "-200px";
+    }
+
+</script>
+
+</body>
+</html>
