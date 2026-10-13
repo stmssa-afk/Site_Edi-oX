@@ -70,7 +70,13 @@
 
         const supabaseCliente = supabase.createClient(
             SUPABASEURL,
-            SUPABASE_ANON_KEY
+            SUPABASE_ANON_KEY,
+            {
+                auth: {
+                    persistSession: false
+                }
+            }
+            
         );
         console.log("Projeto do login:", SUPABASEURL);
         console.log("Cliente criado:", supabaseCliente);
@@ -78,12 +84,10 @@
         
 
         async function verificarAcesso() {
-            // 1. Verifica se existe uma sessão
+            
             const { data, error } =
                 await supabaseCliente.auth.getSession();
-                console.log("Sessão existe no 2.html?", !!data.session);
-console.log("Erro ao buscar sessão:", error);
-console.log("Origem atual:", window.location.origin);
+            
             if (error || !data.session) {
                 mensagem.textContent =
                     "Você precisa fazer login primeiro.";
@@ -95,10 +99,8 @@ console.log("Origem atual:", window.location.origin);
                 return;
             }
 
-            // 2. Pega o usuário autenticado
             const usuario = data.session.user;
 
-            // 3. Consulta o perfil desse usuário
             const { data: perfil, error: erroPerfil } =
                 await supabaseCliente
                     .from("perfis")
@@ -114,7 +116,6 @@ console.log("Origem atual:", window.location.origin);
                 return;
             }
 
-            // 4. Confere o cargo
             if (perfil.Teste1 !== "Palestra3") {
                 mensagem.textContent =
                     "Acesso negado: seu cargo não permite entrar aqui.";
@@ -122,12 +123,10 @@ console.log("Origem atual:", window.location.origin);
                 return;
             }
 
-            // 5. Libera a interface
             mensagem.style.display = "none";
             conteudo.style.display = "block";
         }
 
-        // Botão para sair da conta
         document.getElementById("sair").addEventListener(
             "click",
             async () => {
@@ -153,159 +152,3 @@ console.log("Origem atual:", window.location.origin);
     </script>
 </body>
 </html>
-=======
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palestra 1 - Área Restrita</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: 60px auto;
-            padding: 20px;
-            background: #f4f4f4;
-            color: #222;
-        }
-
-        main {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-        }
-
-        #mensagem {
-            color: #555;
-        }
-
-        #conteudo {
-            display: none;
-        }
-
-        .sucesso {
-            color: green;
-        }
-
-        .error {
-            color: crimson;
-        }
-    </style>
-</head>
-
-<body>
-    <main>
-        <h1>Área da Palestra 1</h1>
-
-        <p id="mensagem">Verificando sua autorização</p>
-
-        <section id="conteudo">
-            <h2 class="sucesso">Acesso autorizado</h2>
-
-            <p>Se você está vendo esta mensagem, seu usuário está
-               autenticado e possui o cargo Palestra1.</p>
-
-            <p>lugar para conteúdos</p>
-
-            <button id="sair">Sair da conta</button>
-        </section>
-    </main>
-
-    <script>
-        const SUPABASEURL =
-            "https://eueizonyxpittymprszz.supabase.co";
-
-        const SUPABASE_ANON_KEY =
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1ZWl6b255eHBpdHR5bXByc3p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4MTc3MTQsImV4cCI6MjEwNDM5MzcxNH0.-M1ztSUh5AvXw1XdoUhr-LpNHzO1FVmsxGoRsZ3lM3I';
-
-        const supabaseCliente = supabase.createClient(
-            SUPABASEURL,
-            SUPABASE_ANON_KEY
-        );
-        console.log("Projeto do login:", SUPABASEURL);
-        console.log("Cliente criado:", supabaseCliente);
-
-        
-
-        async function verificarAcesso() {
-            // 1. Verifica se existe uma sessão
-            const { data, error } =
-                await supabaseCliente.auth.getSession();
-                console.log("Sessão existe no 2.html?", !!data.session);
-console.log("Erro ao buscar sessão:", error);
-console.log("Origem atual:", window.location.origin);
-            if (error || !data.session) {
-                mensagem.textContent =
-                    "Você precisa fazer login primeiro.";
-
-                setTimeout(() => {
-                    window.location.replace("login.html");
-                }, 1500);
-
-                return;
-            }
-
-            // 2. Pega o usuário autenticado
-            const usuario = data.session.user;
-
-            // 3. Consulta o perfil desse usuário
-            const { data: perfil, error: erroPerfil } =
-                await supabaseCliente
-                    .from("perfis")
-                    .select("Teste1")
-                    .eq("id", usuario.id)
-                    .single();
-
-            if (erroPerfil || !perfil) {
-                mensagem.textContent =
-                    "Não foi possível verificar seu cargo.";
-
-                console.error("Erro no perfil:", erroPerfil);
-                return;
-            }
-
-            // 4. Confere o cargo
-            if (perfil.Teste1 !== "Palestra3") {
-                mensagem.textContent =
-                    "Acesso negado: seu cargo não permite entrar aqui.";
-
-                return;
-            }
-
-            // 5. Libera a interface
-            mensagem.style.display = "none";
-            conteudo.style.display = "block";
-        }
-
-        // Botão para sair da conta
-        document.getElementById("sair").addEventListener(
-            "click",
-            async () => {
-                const { error } =
-                    await supabaseCliente.auth.signOut();
-
-                if (error) {
-                    mensagem.textContent =
-                        "Não foi possível encerrar a sessão.";
-                    mensagem.style.display = "block";
-                    return;
-                }
-
-                window.location.replace("login.html");
-            }
-        );
-
-        verificarAcesso().catch((erro) => {
-            console.error("Erro inesperado:", erro);
-            mensagem.textContent =
-                "Ocorreu um erro ao verificar sua autorização.";
-        });
-    </script>
-</body>
-</html>
->>>>>>> origin/main
