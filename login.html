@@ -109,7 +109,16 @@
         const SUPABASEURL = 'https://eueizonyxpittymprszz.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1ZWl6b255eHBpdHR5bXByc3p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4MTc3MTQsImV4cCI6MjEwNDM5MzcxNH0.-M1ztSUh5AvXw1XdoUhr-LpNHzO1FVmsxGoRsZ3lM3I'
 
-        const supabaseCliente = supabase.createClient (SUPABASEURL, SUPABASE_ANON_KEY)
+        const supabaseCliente = supabase.createClient (
+            SUPABASEURL, 
+            SUPABASE_ANON_KEY,
+            {
+                auth: {
+                    persistSession: true,
+                        storage: window.sessionStorage
+                    }
+            }
+        )
 
         form.addEventListener("submit",async function(event) {
 
