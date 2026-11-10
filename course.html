@@ -6,38 +6,41 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
-    <title>STM</title>
-
+    <title>STM - Eventos</title>
 </head>
 <body>
     
-    <section class="sub-header">
+    <section class="header">
         <nav>
-            <a href="index.html"><img src="images/logo.png"></a>
+            <a href="index.html" class="logo">
+                <img src="images/Logo2.png" alt="Logo STM">
+            </a>
+
+            <div class="text-box">
+                <h1>Eventos</h1>
+            </div>
+
             <div class="nav-links" id="navLinks">
-                <i class="bi bi-x " onclick="hideMenu()"></i>
+                <i class="bi bi-x" onclick="hideMenu()"></i>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="about.html">SOBRE</a></li>
                     <li><a href="course.html">EVENTOS</a></li>
                     <li><a href="blog.html">REDES SOCIAIS</a></li>
                     <li><a href="contact.html">CONTATO</a></li>
-                    <li><a href="login.html">LOGIN</a></li>
+                    <li><a href="Login.html">LOGIN</a></li>
                 </ul>
             </div>
+            
             <i class="bi bi-list" onclick="showMenu()"></i>
         </nav>
-
-        <h1>Eventos</h1>
-
     </section>
 
     <!--------------------------------------->
 
     <section class="course">
-
         <h1>Explore Nossa Programação</h1>
         <p>A Semana da Tecnologia Mecânica oferece uma ampla gama de eventos que conectam teoria e prática. Participe de minicursos, workshops, mesas-redondas e palestras com profissionais renomados, e aprofunde seus conhecimentos em um ambiente colaborativo e inovador.</p>
 
@@ -60,69 +63,31 @@
             </div>
         </div>
 
-        <a href="https://www.even3.com.br/viii-semana-de-tecnologia-mecanica-514765/" class="hero-btn red-btn">Nossa Programação</a>
-
+        <a href="https://www.even3.com.br/viii-semana-de-tecnologia-mecanica-514765/" target="_blank" rel="noopener noreferrer" class="hero-btn red-btn">Nossa Programação</a>
     </section>
-
-    <!--------------------------------------->
-    
-    <!---
-
-    <section class="facilities">
-        
-        <h1>TESTE</h1>
-        <p>Lorem Ipsum é simplesmente um texto modelo da indústria tipográfica e de impressão.</p>
-
-        <div class="row">
-            <div class="facilities-col">
-                <img src="/images/library.png">
-                <h3>TESTE</h3>
-                <p>Lorem Ipsum é simplesmente um texto modelo da indústria tipográfica e de impressão. Lorem Ipsum tem sido o texto modelo padrão da indústria desde os anos 1500, quando um impressor desconhecido pegou uma galera de tipos e os embaralhou para fazer um livro de espécimes de tipos.</p>
-            </div>
-            <div class="facilities-col">
-                <img src="/images/library.png">
-                <h3>TESTE</h3>
-                <p>Lorem Ipsum é simplesmente um texto modelo da indústria tipográfica e de impressão. Lorem Ipsum tem sido o texto modelo padrão da indústria desde os anos 1500, quando um impressor desconhecido pegou uma galera de tipos e os embaralhou para fazer um livro de espécimes de tipos.</p>
-            </div>
-            <div class="facilities-col">
-                <img src="/images/library.png">
-                <h3>TESTE</h3>
-                <p>Lorem Ipsum é simplesmente um texto modelo da indústria tipográfica e de impressão. Lorem Ipsum tem sido o texto modelo padrão da indústria desde os anos 1500, quando um impressor desconhecido pegou uma galera de tipos e os embaralhou para fazer um livro de espécimes de tipos.</p>
-            </div>
-        </div>
-
-    </section>
-
-    ---->
-    
 
     <!--------------------------------------->
 
     <section class="footer">
-
         <h4>Sobre Nós</h4>
         <p>A Semana da Tecnologia Mecânica é um evento anual que reúne estudantes, professores, profissionais e empresas para explorar e compartilhar conhecimentos sobre as inovações e os desafios do setor mecânico e industrial. Nossa missão é promover aprendizado, conexões e crescimento profissional.</p>
 
-        <div class="icons">
-            <i class="fa-brands fa-instagram"></i> 
-        </div>
+        <a href="https://www.instagram.com/stmifba.salvador/" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-instagram"></i>
+        </a>
         <p>Copyright © 2024 - Semana de Tecnologia Mecânica. Todos os direitos reservados</p>
-
     </section>
 
-<script>
+    <script>
+        const navLinks = document.getElementById("navLinks");
 
-    var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.classList.add("ativo");
+        }
 
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-
-    function hideMenu(){
-        navLinks.style.right = "-200px";
-    }
-
-</script>
-
+        function hideMenu() {
+            navLinks.classList.remove("ativo");
+        }
+    </script>
 </body>
 </html>
