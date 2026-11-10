@@ -1,177 +1,232 @@
 <!DOCTYPE html>
-
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
+    <!-- Supabase JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <title>Login - STM</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 
     <style>
       * {
-        padding:0;
+        padding: 0;
         margin: 0;
         box-sizing: border-box;
       }
       body {
-        font-family:Arial, Helvetica, sans-serif;
-        background: #0f172a;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to bottom, #000000, #50004c);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
+    
       .caixaex-login {
+        flex: 1;
         width: 100%;
-        height: 100vh;
-
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 40px 20px;
       }
-      .caixain-login{
-        width: 350px;
-        padding: 40px;
+      
+      .caixain-login {
+        width: 100%;
+        max-width: 380px;
+        padding: 35px 25px;
         text-align: center;
-        border-radius: 10px;
-        background: white;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       }
-      .caixain-login h1{
-        font-size: 40px;
-        margin-bottom: 10px;
+      
+      .caixain-login h1 {
+        font-size: 32px;
+        color: #1a1a1a;
+        margin-bottom: 5px;
       }
-      .caixain-login p{
+      
+      .caixain-login p.subtitulo {
         margin-bottom: 25px;
         color: #666;
+        font-size: 14px;
       }
-      .caixain-login input{
+      
+      .caixain-login input {
         width: 100%;
-        padding: 11px;
+        padding: 12px 15px;
         border: 1px solid #ccc;
-        border-radius: 5px;
+        border-radius: 6px;
         margin-bottom: 15px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.3s;
       }
-      .caixain-login button{
-        width:100%;
-        background: rgb(128, 42, 131);
-        color:white;
-        font-size:15px;
-        height:30px;
-        border-radius:5px;
-        border:none;
+      
+      .caixain-login input:focus {
+        border-color: #802a83;
+      }
+      
+      .caixain-login button {
+        width: 100%;
+        background: #802a83;
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+        height: 42px;
+        border-radius: 6px;
+        border: none;
         cursor: pointer;
+        transition: background 0.3s;
       }
-      .caixain-login button:hover{
-        background:rgb(112, 42, 114);
+      
+      .caixain-login button:hover {
+        background: #621e65;
       }
-      #mensagem{
-        margin-top:15px;
-        font-size:14px;
+      
+      #mensagem {
+        margin-top: 15px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      @media (max-width: 700px) {
+        .caixaex-login {
+          padding: 30px 15px;
+        }
       }
     </style>
 </head>
 
 <body>
 
+    <section class="header">
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="images/Logo2.png" alt="Logo STM">
+            </a>
+            
+            <div class="text-box">
+                <h1>Área de Login</h1>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <i class="bi bi-x" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">SOBRE</a></li>
+                    <li><a href="course.html">EVENTOS</a></li>
+                    <li><a href="blog.html">REDES SOCIAIS</a></li>
+                    <li><a href="contact.html">CONTATO</a></li>
+                    <li><a href="Login.html">LOGIN</a></li>
+                </ul>
+            </div>
+            
+            <i class="bi bi-list" onclick="showMenu()"></i>
+        </nav>
+    </section>
+
     <div class="caixaex-login">
-
         <div class="caixain-login">
-
             <h1>STM</h1>
-            <p>Semana da Tecnologia Mecânica</p>
+            <p class="subtitulo">Semana da Tecnologia Mecânica</p>
 
             <form id="Loginid">
                 <input 
-                type="email"
-                id="email"
-                placeholder="E-mail"
-                required
+                    type="email"
+                    id="email"
+                    placeholder="E-mail"
+                    required
                 >
                 <input
-                type="password"
-                id="senha"
-                placeholder="Senha"
-                required
+                    type="password"
+                    id="senha"
+                    placeholder="Senha"
+                    required
                 >
-                <button type="submit">
-                Entrar
-                </button>
+                <button type="submit">Entrar</button>
                 <p id="mensagem"></p>
             </form>
         </div>
     </div>
-    
 
     <script>
+        const navLinks = document.getElementById("navLinks");
+
+        function showMenu() {
+            navLinks.classList.add("ativo");
+        }
+
+        function hideMenu() {
+            navLinks.classList.remove("ativo");
+        }
+
         console.log("SCRIPT CARREGOU");
         const form = document.getElementById("Loginid");
         const mensagem = document.getElementById("mensagem");
 
         const SUPABASEURL = 'https://eueizonyxpittymprszz.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1ZWl6b255eHBpdHR5bXByc3p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4MTc3MTQsImV4cCI6MjEwNDM5MzcxNH0.-M1ztSUh5AvXw1XdoUhr-LpNHzO1FVmsxGoRsZ3lM3I'
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1ZWl6b255eHBpdHR5bXByc3p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4MTc3MTQsImV4cCI6MjEwNDM5MzcxNH0.-M1ztSUh5AvXw1XdoUhr-LpNHzO1FVmsxGoRsZ3lM3I';
 
-        const supabaseCliente = supabase.createClient (
-            SUPABASEURL, 
-            SUPABASE_ANON_KEY,
-            {
-                auth: {
-                    persistSession: true,
-                        storage: window.sessionStorage
-                    }
-            }
-        )
+        const supabaseCliente = supabase.createClient(SUPABASEURL, SUPABASE_ANON_KEY);
 
-        form.addEventListener("submit",async function(event) {
-
+        form.addEventListener("submit", async function(event) {
             event.preventDefault();
 
             const email = document.getElementById("email").value.trim();
             const senha = document.getElementById("senha").value;
 
-            const {data, error} =
-            await supabaseCliente.auth.signInWithPassword({
-              email: email,
-              password: senha
+            mensagem.textContent = "Autenticando...";
+            mensagem.style.color = "#666";
+
+            const { data, error } = await supabaseCliente.auth.signInWithPassword({
+                email: email,
+                password: senha
             });
             
-            if (error){
-              mensagem.textContent = error.message;
-              mensagem.style.color = "red";
-              console.error("Login inválido",error);
-              return;
+            if (error) {
+                mensagem.textContent = error.message;
+                mensagem.style.color = "red";
+                console.error("Login inválido", error);
+                return;
+            } else {
+                mensagem.textContent = "Login realizado com sucesso!";
+                mensagem.style.color = "green";
+                console.log("Usuário logado", data.user);
             }
-            else {
-              mensagem.textContent = "Login realizado com sucesso";
-              mensagem.style.color = "green";
-              console.log("Usuário logado", data.user);
-            }
+
             await new Promise(resolve => setTimeout(resolve, 500));
             const userID = data.user.id;
-            const {data: perfil, error: perfilError } = await supabaseCliente
-            .from('perfis')
-            .select('*')
-            .eq('id',userID)
-            .single();
 
-            if(perfilError){
-              console.error("Erro na autenticação");
-              mensagem.textContent= "Erro na autenticação do login";
-              mensagem.style.color="orange";
-              return;
+            const { data: perfil, error: perfilError } = await supabaseCliente
+                .from('perfis')
+                .select('*')
+                .eq('id', userID)
+                .single();
+
+            if (perfilError) {
+                console.error("Erro na busca de perfil", perfilError);
+                mensagem.textContent = "Erro na autenticação do perfil";
+                mensagem.style.color = "orange";
+                return;
             }
+
             const cargo = perfil.Teste1;
 
-            mensagem.textContent = `Bem vindo(a) ${perfil.Teste2}!`;
-            mensagem.style.color = "green"
-               await new Promise(resolve => setTimeout(resolve, 500));
+            mensagem.textContent = `Bem-vindo(a), ${perfil.Nome || perfil.nome}!`;
+            mensagem.style.color = "green";
 
-            if(cargo == "Palestra3"){
-              window.location.href = "2.html";
-            }
-            else if(cargo == "Palestra2"){
-              window.location.href = "3.html";
-            }
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            window.location.href = "2.html";
         });
     </script>
-
 </body>
 </html>
