@@ -1,153 +1,343 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palestra 1 - Área Restrita</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>Painel do Palestrante - STM</title>
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 700px;
-            margin: 60px auto;
+        
+        .dashboard-container {
+            width: 80%;
+            margin: 40px auto 80px;
+        }
+
+        .user-welcome-box {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .user-welcome-box h2 {
+            font-size: 28px;
+            color: #000000;
+            margin-bottom: 8px;
+        }
+
+        .user-welcome-box p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .info-block {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 0px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+
+        .info-block h3 {
+            text-align: left;
+            color: #000000;
+            font-size: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-block h3 i {
+            color: rgb(168, 85, 247);
+        }
+
+        
+        .palestra-item {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 4px solid rgb(168, 85, 247);
             padding: 20px;
-            background: #f4f4f4;
-            color: #222;
+            border-radius: 0px;
+            margin-bottom: 15px;
         }
 
-        main {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
+        .palestra-item h4 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 10px;
         }
 
-        #mensagem {
-            color: #555;
+        .palestra-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            font-size: 13px;
+            color: #ccc;
         }
 
-        #conteudo {
-            display: none;
+        .palestra-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .sucesso {
-            color: green;
+        .contact-options {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .error {
-            color: crimson;
+        .contact-card-btn {
+            flex: 1;
+            min-width: 0;
+            background: transparent;
+            border: 1px solid #381382;
+            padding: 15px 20px;
+            border-radius: 0px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .contact-card-btn:hover {
+            background: #381382;
+        }
+
+        .contact-card-btn i {
+            font-size: 24px;
+        }
+
+        
+        .btn-logout-top {
+            background: transparent;
+            border: 1px solid #381382;
+            color: #fff;
+            padding: 6px 16px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .btn-logout-top:hover {
+            background: #ef4444;
+            border-color: #ef4444;
+        }
+
+        #loading-state {
+            text-align: center;
+            padding: 100px 0;
+            color: #fff;
+        }
+
+        @media (max-width: 700px) {
+            .dashboard-container {
+                width: 90%;
+            }
+            .contact-options {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
-
 <body>
-    <main>
-        <h1>Área da Palestra 1</h1>
 
-        <p id="mensagem">Verificando sua autorização</p>
+    
+    <section class="header">
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="images/Logo2.png" alt="Logo STM">
+            </a>
 
-        <section id="conteudo">
-            <h2 class="sucesso">Acesso autorizado</h2>
+            <div class="text-box">
+                <h1>Painel do Palestrante</h1>
+            </div>
 
-            <p>Se você está vendo esta mensagem, seu usuário está
-               autenticado e possui o cargo Palestra1.</p>
+            <div class="nav-links" id="navLinks">
+                <i class="bi bi-x" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">SOBRE</a></li>
+                    <li><a href="course.html">EVENTOS</a></li>
+                    <li><a href="blog.html">REDES SOCIAIS</a></li>
+                    <li><a href="contact.html">CONTATO</a></li>
+                    <li><button id="btn-sair" class="btn-logout-top">SAIR</button></li>
+                </ul>
+            </div>
+            <i class="bi bi-list" onclick="showMenu()"></i>
+        </nav>
+    </section>
 
-            <p>lugar para conteúdos</p>
+    <div id="loading-state">
+        <p id="mensagem-status">Verificando suas credenciais no sistema...</p>
+    </div>
 
-            <button id="sair">Sair da conta</button>
-        </section>
-    </main>
+
+    <div class="dashboard-container" id="painel-conteudo" style="display: none;">
+        
+        <div class="user-welcome-box">
+            <h2 id="palestrante-nome">Bem-vindo(a)</h2>
+            <p>Confira abaixo o cronograma das suas apresentações, orientações de envio de arquivos e a emissão do seu certificado.</p>
+        </div>
+
+        <!-- Palestras e horários -->
+        <div class="info-block">
+            <h3><i class="bi bi-calendar-event"></i> Suas Palestras e Horários</h3>
+            <div id="lista-palestras">
+                
+            </div>
+        </div>
+
+        <!-- Materiais -->
+        <div class="info-block">
+            <h3><i class="bi bi-file-earmark-arrow-up"></i> Envio de Apresentações e Materiais</h3>
+            <p style="color: #bbb; font-size: 14px; margin-bottom: 20px;">
+                Envie os slides ou arquivos de apoio com antecedência para a comissão organizadora preparar a estrutura dos auditórios:
+            </p>
+            
+            <div class="contact-options">
+                <a href="https://wa.me/557199255775?text=Envio%20de%20material%20de%20palestra%20STM" target="_blank" class="contact-card-btn">
+                    <i class="bi bi-whatsapp" style="color: #25d366;"></i>
+                    <div>
+                        <strong>Enviar via WhatsApp</strong>
+                        <div style="font-size: 12px; color: #aaa;"> (71) 9925-5775 — Organização</div>
+                    </div>
+                </a>
+
+                <a href="mailto:stm.ssa@ifba.edu.br?subject=Materiais%20Palestra%20STM" class="contact-card-btn">
+                    <i class="bi bi-envelope" style="color: #a855f7;"></i>
+                    <div>
+                        <strong>Enviar por E-mail</strong>
+                        <div style="font-size: 12px; color: #aaa;">stm.ssa@ifba.edu.br</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Certificado -->
+        <div class="info-block">
+            <h3><i class="bi bi-award"></i> Certificado de Palestrante</h3>
+            <p style="color: #bbb; font-size: 14px; margin-bottom: 20px;" id="cert-desc">
+                Seu certificado digital de ministração estará disponível para download aqui após a conclusão da palestra no evento.
+            </p>
+            
+            <div id="cert-action-container">
+                <button class="hero-btn red-btn" style="opacity: 0.5; cursor: not-allowed;" disabled>
+                    <i class="bi bi-lock"></i> Indisponível no momento
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    
+    <section class="footer">
+        <h4>Sobre Nós</h4>
+        <p>A Semana da Tecnologia Mecânica é um evento anual que reúne estudantes, professores, profissionais e empresas para explorar e compartilhar conhecimentos sobre as inovações e os desafios do setor mecânico e industrial.</p>
+
+        <div class="icons">
+            <a href="https://www.instagram.com/stmifba.salvador/" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-instagram"></i>
+        </a> 
+        </div>
+        <p>Copyright © 2024 - Semana de Tecnologia Mecânica. Todos os direitos reservados</p>
+    </section>
 
     <script>
-        const SUPABASEURL =
-            "https://eueizonyxpittymprszz.supabase.co";
-
-        const SUPABASE_ANON_KEY =
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1ZWl6b255eHBpdHR5bXByc3p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4MTc3MTQsImV4cCI6MjEwNDM5MzcxNH0.-M1ztSUh5AvXw1XdoUhr-LpNHzO1FVmsxGoRsZ3lM3I';
-
-        const supabaseCliente = supabase.createClient(
-            SUPABASEURL,
-            SUPABASE_ANON_KEY,
-            {
-                auth: {
-                    persistSession: true,
-                    storage: window.sessionStorage
-                }
-            }
-            
-        );
-        console.log("Projeto do login:", SUPABASEURL);
-        console.log("Cliente criado:", supabaseCliente);
+        
+        const navLinks = document.getElementById("navLinks");
+        function showMenu() { navLinks.classList.add("ativo"); }
+        function hideMenu() { navLinks.classList.remove("ativo"); }
 
         
+        const SUPABASEURL = "https://eueizonyxpittymprszz.supabase.co";
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1ZWl6b255eHBpdHR5bXByc3p6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg4MTc3MTQsImV4cCI6MjEwNDM5MzcxNH0.-M1ztSUh5AvXw1XdoUhr-LpNHzO1FVmsxGoRsZ3lM3I';
 
-        async function verificarAcesso() {
-            
-            const { data, error } =
-                await supabaseCliente.auth.getSession();
-            
-            if (error || !data.session) {
-                mensagem.textContent =
-                    "Você precisa fazer login primeiro.";
+        const supabaseCliente = supabase.createClient(SUPABASEURL, SUPABASE_ANON_KEY);
 
-                setTimeout(() => {
-                    window.location.replace("login.html");
-                }, 1500);
+       async function carregarDadosPalestrante() {
+    const mensagem = document.getElementById("mensagem-status");
+    const { data: sessionData, error: sessionError } = await supabaseCliente.auth.getSession();
 
-                return;
-            }
+    if (sessionError || !sessionData.session) {
+        mensagem.textContent = "Você precisa realizar o login primeiro. Redirecionando...";
+        setTimeout(() => window.location.replace("Login.html"), 1200);
+        return;
+    }
 
-            const usuario = data.session.user;
+    const usuario = sessionData.session.user;
 
-            const { data: perfil, error: erroPerfil } =
-                await supabaseCliente
-                    .from("perfis")
-                    .select("Teste1")
-                    .eq("id", usuario.id)
-                    .single();
+    
+    const { data: perfil, error: perfilError } = await supabaseCliente
+        .from("perfis")
+        .select("*")
+        .eq("id", usuario.id)
+        .single();
 
-            if (erroPerfil || !perfil) {
-                mensagem.textContent =
-                    "Não foi possível verificar seu cargo.";
+    if (perfilError || !perfil) {
+        mensagem.textContent = "Erro ao carregar permissões da conta.";
+        return;
+    }
 
-                console.error("Erro no perfil:", erroPerfil);
-                return;
-            }
+    
+    const nomeUsuario = perfil.Nome || perfil.nome || "Palestrante";
 
-            if (perfil.Teste1 !== "Palestra3") {
-                mensagem.textContent =
-                    "Acesso negado: seu cargo não permite entrar aqui.";
+   
+    document.getElementById("palestrante-nome").textContent = `Olá, ${perfil.Nome}!`;
 
-                return;
-            }
+    
+    
+const titulos = (perfil.Teste1 || "").split("|");
+const datas = (perfil.data || "").split("|");
+const horarios = (perfil.horario || "").split("|");
+const locais = (perfil.local || "").split("|");
 
-            mensagem.style.display = "none";
-            conteudo.style.display = "block";
-        }
+const containerPalestras = document.getElementById("lista-palestras");
 
-        document.getElementById("sair").addEventListener(
-            "click",
-            async () => {
-                const { error } =
-                    await supabaseCliente.auth.signOut();
 
-                if (error) {
-                    mensagem.textContent =
-                        "Não foi possível encerrar a sessão.";
-                    mensagem.style.display = "block";
-                    return;
-                }
+containerPalestras.innerHTML = titulos.map((titulo, i) => `
+    <div class="palestra-item">
+        <h4>${titulo.trim()}</h4>
+        <div class="palestra-meta">
+            <span><i class="bi bi-calendar-event"></i> ${datas[i] ? datas[i].trim() : (perfil.data || 'Dezembro / 2024')}</span>
+            <span><i class="bi bi-clock"></i> ${horarios[i] ? horarios[i].trim() : (perfil.horario || 'Horário a definir')}</span>
+            <span><i class="bi bi-geo-alt"></i> ${locais[i] ? locais[i].trim() : (perfil.local || 'Campus Salvador')}</span>
+        </div>
+    </div>
+`).join('');
 
-                window.location.replace("login.html");
-            }
-        );
+   
+    if (perfil.url_certificado) {
+        document.getElementById("cert-desc").textContent = "Seu certificado já está disponível para download!";
+        document.getElementById("cert-action-container").innerHTML = `
+            <a href="${perfil.url_certificado}" target="_blank" class="hero-btn red-btn">
+                <i class="bi bi-download"></i> Baixar Certificado (PDF)
+            </a>
+        `;
+    }
 
-        verificarAcesso().catch((erro) => {
-            console.error("Erro inesperado:", erro);
-            mensagem.textContent =
-                "Ocorreu um erro ao verificar sua autorização.";
+   
+    document.getElementById("loading-state").style.display = "none";
+    document.getElementById("painel-conteudo").style.display = "block";
+}
+
+       
+        document.getElementById("btn-sair").addEventListener("click", async () => {
+            await supabaseCliente.auth.signOut();
+            window.location.replace("Login.html");
         });
+
+        carregarDadosPalestrante();
     </script>
 </body>
 </html>
