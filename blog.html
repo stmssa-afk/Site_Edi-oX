@@ -5,102 +5,190 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
-    <title>STM</title>
+    <title>STM - Redes Sociais & Atualizações</title>
 
+    <style>
+    
+        .blog-content {
+            width: 85%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .post-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 0px;
+            overflow: hidden;
+            padding: 25px;
+        }
+
+        .post-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 0px;
+            margin-bottom: 20px;
+        }
+
+        .post-card h2 {
+            color: #fff;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .post-card p {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            padding: 0;
+        }
+
+        .post-tags {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(168, 85, 247, 0.15);
+            color: #c084fc;
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .sidebar-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .insta-profile-icon {
+            font-size: 3rem;
+            color: #a855f7;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-card h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .sidebar-card p {
+            color: #aaa;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            padding: 0;
+        }
+
+        @media (max-width: 850px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
     
-    <section class="sub-header">
+    <section class="header">
         <nav>
-            <a href="index.html"><img src="images/logo.png"></a>
+            <a href="index.html" class="logo">
+                <img src="images/Logo2.png" alt="Logo STM">
+            </a>
+
+            <div class="text-box">
+                <h1>Redes Sociais</h1>
+            </div>
+
             <div class="nav-links" id="navLinks">
-                <i class="bi bi-x " onclick="hideMenu()"></i>
+                <i class="bi bi-x" onclick="hideMenu()"></i>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="about.html">SOBRE</a></li>
                     <li><a href="course.html">EVENTOS</a></li>
                     <li><a href="blog.html">REDES SOCIAIS</a></li>
                     <li><a href="contact.html">CONTATO</a></li>
-                    <li><a href="login.html">LOGIN</a></li>
+                    <li><a href="Login.html">LOGIN</a></li>
                 </ul>
             </div>
+            
             <i class="bi bi-list" onclick="showMenu()"></i>
         </nav>
-
-        <h1>Redes Sociais</h1>
-
     </section>
 
     <!--------------------------------------->
 
     <section class="blog-content">
-        
-        <div class="row">
-            <div class="blog-left">
-                <img src="images/14.jpeg">
-                <h2>🚨Atenção para uma importante atualização! 🚨</h2>
-                <p>Com o fim do ano se aproximando e, junto com ele, a nossa tão aguardada VIII STM, informamos que a Semana de Tecnologia Mecânica será realizada de 9 a 13 de DEZEMBRO. A mudança na data do evento, que tradicionalmente acontece em outubro, foi necessária devido ao recesso eleitoral e aos feriados. Fiquem ligados em nossas próximas postagens aqui no Instagram, pois em breve compartilharemos mais detalhes e novidades. Não perca a chance de participar dessa semana inesquecível! 👀⚙️😉 #tecnologiamecanica #ifbasalvador #mecanicaindustrial #ifba</p>
-<!---<br>
-                <p>Lorem Ipsum é simplesmente um texto modelo da indústria tipográfica e de impressão. Lorem Ipsum tem sido o texto modelo padrão da indústria desde os anos 1500, quando um impressor desconhecido pegou uma galera de tipos e os embaralhou para fazer um livro de espécimes de tipos.</p>
+        <div class="blog-grid">
+            
+            <div class="post-card">
+                <img src="images/14.jpeg" alt="Atualização X STM">
+                
+                <h2>🚨 Atenção para uma importante atualização! 🚨</h2>
+                <p>Com o fim do ano se aproximando e, junto com ele, a nossa tão aguardada X STM, informamos que a Semana de Tecnologia Mecânica será realizada de 9 a 13 de DEZEMBRO. A mudança na data do evento, que tradicionalmente acontece em outubro, foi necessária devido ao recesso eleitoral e aos feriados.</p>
                 <br>
-                <p>Lorem Ipsum é simplesmente um texto modelo da indústria tipográfica e de impressão. Lorem Ipsum tem sido o texto modelo padrão da indústria desde os anos 1500, quando um impressor desconhecido pegou uma galera de tipos e os embaralhou para fazer um livro de espécimes de tipos.</p>
-                <br>
-                <p>Lorem Ipsum é simplesmente um texto modelo da indústria tipográfica e de impressão. Lorem Ipsum tem sido o texto modelo padrão da indústria desde os anos 1500, quando um impressor desconhecido pegou uma galera de tipos e os embaralhou para fazer um livro de espécimes de tipos.</p>
-                <br>
-                <p>Lorem Ipsum é simplesmente um texto modelo da indústria tipográfica e de impressão. Lorem Ipsum tem sido o texto modelo padrão da indústria desde os anos 1500, quando um impressor desconhecido pegou uma galera de tipos e os embaralhou para fazer um livro de espécimes de tipos.</p>
----->
-                <div class="comment-box">
+                <p>Fiquem ligados em nossas próximas postagens aqui e no nosso perfil oficial do Instagram, pois em breve compartilharemos mais detalhes sobre os minicursos e a abertura das inscrições. Não perca a chance de participar dessa semana inesquecível! 👀⚙️😉</p>
 
-                    <h3>Deixe um Comentário</h3>
-
-                    <form class="comment-form">
-
-                        <input type="text" placeholder="Nome">
-                        <input type="email" placeholder="Email">
-                        <textarea rows="5" placeholder="Comentário"></textarea>
-                        <button type="submit" class="hero-btn red-btn">ENVIAR</button>
-
-                    </form>
-
+                <div class="post-tags">
+                    <span class="tag">#tecnologiamecanica</span>
+                    <span class="tag">#ifbasalvador</span>
+                    <span class="tag">#mecanicaindustrial</span>
                 </div>
-
             </div>
-            <div class="blog-right">
-        </div>
 
+            <div class="sidebar-card">
+                <i class="bi bi-instagram insta-profile-icon"></i>
+                <h3>Siga o @stmifba.salvador</h3>
+                <p>Acompanhe os bastidores, cronogramas atualizados e avisos em tempo real da X Semana de Tecnologia Mecânica.</p>
+                
+                <a href="https://www.instagram.com/stmifba.salvador/" target="_blank" rel="noopener noreferrer" class="hero-btn red-btn">
+                    <i class="bi bi-instagram"></i> Acessar Instagram
+                </a>
+            </div>
+
+        </div>
     </section>
-    
 
     <!--------------------------------------->
 
     <section class="footer">
+        <h4>Sobre a STM</h4>
+        <p>A Semana da Tecnologia Mecânica é um evento anual promovido pelo IFBA Campus Salvador que reúne estudantes, docentes e profissionais para debater inovações, participar de minicursos práticos e fortalecer a integração entre o meio acadêmico e o setor industrial.</p>
 
-        <h4>Sobre Nós</h4>
-        <p>A Semana da Tecnologia Mecânica é um evento anual que reúne estudantes, professores, profissionais e empresas para explorar e compartilhar conhecimentos sobre as inovações e os desafios do setor mecânico e industrial. Nossa missão é promover aprendizado, conexões e crescimento profissional.</p>
-
-        <div class="icons">
-            <i class="fa-brands fa-instagram"></i> 
+        <div class="icons" style="margin-top: 15px;">
+            <a href="https://www.instagram.com/stmifba.salvador/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                <i class="bi bi-instagram"></i>
+            </a>
         </div>
-        <p>Copyright © 2024 - Semana de Tecnologia Mecânica. Todos os direitos reservados</p>
-
+        <p style="margin-top: 15px; font-size: 12px; color: #777;">Copyright © 2024 - Semana de Tecnologia Mecânica. Todos os direitos reservados</p>
     </section>
 
-<script>
+    <script>
+        const navLinks = document.getElementById("navLinks");
 
-    var navLinks = document.getElementById("navLinks");
+        function showMenu() {
+            navLinks.classList.add("ativo");
+        }
 
-    function showMenu(){
-        navLinks.style.right = "0";
-    }
-
-    function hideMenu(){
-        navLinks.style.right = "-200px";
-    }
-
-</script>
-
+        function hideMenu() {
+            navLinks.classList.remove("ativo");
+        }
+    </script>
 </body>
 </html>
